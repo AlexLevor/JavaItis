@@ -2,29 +2,35 @@ package ru.itis.dao;
 
 import com.google.common.base.Splitter;
 import ru.itis.models.User;
+import ru.itis.service.SimpleUsersService;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Scanner;
 
 public class UsersDaoFileBasedImpl implements UsersDao {
 
     private BufferedReader fileReader;
     private String fileName;
+    private Properties properties;
 
-    public UsersDaoFileBasedImpl(String fileName) {
-        try {
-            fileReader = new BufferedReader(new FileReader(fileName));
-            this.fileName = fileName;
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+    public UsersDaoFileBasedImpl() {
+        try{
+            properties = new Properties();
+            properties.load(
+                    new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\SimpleEnterpriseMaven\\src\\resources\\DaoUsers.properties"));
+            this.fileName = properties.getProperty("dao.users.txt");
+            fileReader = new BufferedReader(new FileReader(this.fileName));
+
+        }catch (IOException e) {
+            throw new IllegalArgumentException(e);
         }
+        /*
+       catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }*/
     }
 
     public List<User> getAll() {

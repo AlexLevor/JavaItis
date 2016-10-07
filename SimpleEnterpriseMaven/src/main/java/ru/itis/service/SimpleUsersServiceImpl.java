@@ -12,8 +12,7 @@ public class SimpleUsersServiceImpl implements SimpleUsersService {
 
     private UsersDao usersDao;
 
-    public SimpleUsersServiceImpl(UsersDao usersDao) {
-        this.usersDao = usersDao;
+    public SimpleUsersServiceImpl() {
     }
 
     public boolean isRegistered(String userName, String userPassword) {
@@ -27,5 +26,8 @@ public class SimpleUsersServiceImpl implements SimpleUsersService {
         }
 
         return false;
+    }
+    public void setUsersDao(UsersDao usersDao){
+        this.usersDao = usersDao;
     }
 }
