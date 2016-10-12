@@ -26,7 +26,7 @@ public class DaoServiceSupportFactory {
             String serviceClass = properties.getProperty("service.class");
             this.dao = (UsersDao) Class.forName(daoClass).newInstance();
             this.service = (SimpleUsersService) Class.forName(serviceClass).newInstance();
-            service.setUsersDao(dao);
+            this.service.setUsersDao(dao);
         }catch (IOException e) {
             throw new IllegalArgumentException(e);
         } catch (ClassNotFoundException e) {

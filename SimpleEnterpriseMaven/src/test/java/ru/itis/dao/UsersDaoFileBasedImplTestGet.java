@@ -14,7 +14,7 @@ public class UsersDaoFileBasedImplTestGet {
     private UsersDaoFileBasedImpl usersDao;
     @Before
     public void setUp() throws Exception {
-        usersDao = new UsersDaoFileBasedImpl("C:\\Users\\user\\Desktop\\prog\\JAVA\\JavaItis\\SimpleEnterpriseMaven\\users.txt");
+        usersDao = new UsersDaoFileBasedImpl();
     }
 
     @Test

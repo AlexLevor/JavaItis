@@ -14,7 +14,6 @@ public class Main {
 
         /*
         UsersDao usersDao = new UsersDaoFileBasedImpl("C:\\Users\\KFU-user\\Desktop\\JavaItis\\SimpleEnterpriseMaven\\users.txt");
-
         SimpleUsersService service = new SimpleUsersServiceImpl(usersDao);
         */
         System.out.println(service.isRegistered("Marsel", "qwerty008"));
