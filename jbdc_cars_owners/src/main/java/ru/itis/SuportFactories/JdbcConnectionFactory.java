@@ -21,7 +21,7 @@ public class JdbcConnectionFactory {
     private JdbcConnectionFactory(){
         try {
             this.properties = new Properties();
-            this.properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\jbdc_cars_owners\\src\\main\\resources\\JdbcProperties.properties"));
+            this.properties.load(new FileInputStream(".\\src\\main\\resources\\JdbcProperties.properties"));
             String URL = this.properties.getProperty("jdbc.url");
             String name = this.properties.getProperty("jdbc.username");
             String password = this.properties.getProperty("jdbc.password");
