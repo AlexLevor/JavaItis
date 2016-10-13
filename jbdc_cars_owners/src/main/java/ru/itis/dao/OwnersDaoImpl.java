@@ -8,13 +8,14 @@ import java.util.List;
 /**
  * Created by KFU-user on 12.10.2016.
  */
-public class DaojdbcOwnersImpl implements DaojdbcOwners {
+public class OwnersDaoImpl implements OwnersDao {
 
     private Connection connection;
 
-    public DaojdbcOwnersImpl() {
-        connection = JdbcSupportFactory.getInstance().getConnection();
+    public OwnersDaoImpl(Connection connection) {
+        this.connection = connection;
     }
+
     public List<Owner> getAll() {
         return null;
     }

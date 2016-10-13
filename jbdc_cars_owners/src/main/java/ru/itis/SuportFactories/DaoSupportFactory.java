@@ -1,11 +1,15 @@
 package ru.itis.SuportFactories;
 
+import org.postgresql.core.ConnectionFactory;
 import ru.itis.dao.CarsDao;
-import ru.itis.dao.DaojdbcOwners;
+import ru.itis.dao.OwnersDao;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
 import java.util.Properties;
 
 /**
@@ -14,7 +18,7 @@ import java.util.Properties;
 public class DaoSupportFactory {
 
     private static DaoSupportFactory instance;
-    private DaojdbcOwners daoOwners;
+    private OwnersDao daoOwners;
     private CarsDao daoCars;
 
     private Properties properties;
@@ -23,10 +27,17 @@ public class DaoSupportFactory {
         try{
             properties = new Properties();
             properties.load(new FileInputStream("C:\\Users\\KFU-user\\Desktop\\JavaItis\\jbdc_cars_owners\\src\\main\\resources\\DaoProperties.properties"));
-            String daoCarsClass=properties.getProperty("daojdbccars.class");
-            String daoUsersClass=properties.getProperty("daojdbcusers.class");
-            this.daoCars = (CarsDao)Class.forName(daoCarsClass).newInstance();
-            this.daoOwners = (DaojdbcOwners)Class.forName(daoUsersClass).newInstance();
+            String daoCarsClass=properties.getProperty("carsdao.class");
+            String daoUsersClass=properties.getProperty("ownersdao.class");
+
+            Class daoCarsClassConstructor = Class.forName(daoCarsClass);
+            Constructor constructorCars = daoCarsClassConstructor.getConstructor(Connection.class);
+            daoCars = (CarsDao)constructorCars.newInstance(JdbcConnectionFactory.getInstance().getConnection());
+
+            Class daoOwnersClassConstructor = Class.forName(daoUsersClass);
+            Constructor constructorOwners = daoOwnersClassConstructor.getConstructor(Connection.class);
+            daoOwners = (OwnersDao) constructorOwners.newInstance(JdbcConnectionFactory.getInstance().getConnection());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -37,13 +48,17 @@ public class DaoSupportFactory {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
     }
     static {
         instance = new DaoSupportFactory();
     }
 
-    public DaojdbcOwners getDaoOwners(){
+    public OwnersDao getDaoOwners(){
         return daoOwners;
     }
     public CarsDao getDaoCars(){
