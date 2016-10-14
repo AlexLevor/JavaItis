@@ -1,7 +1,6 @@
 package ru.itis.dao;
 
 import ru.itis.models.Car;
-import ru.itis.models.Owner;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,6 +20,9 @@ public class CarsDaoImpl implements CarsDao {
 
     // language=SQL
     private final String SQL_ADD_CAR = "INSERT into cars (mileage, owner_id) values(?, ?);";
+
+    // language=SQL
+    private final String SQL_DELETE_CAR = "DELETE FROM cars WHERE car_id = ?";
 
     public CarsDaoImpl(Connection connection){
         this.connection = connection;
@@ -50,7 +52,7 @@ public class CarsDaoImpl implements CarsDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_ADD_CAR);
             preparedStatement.setInt(1, car.getMileage());
-            preparedStatement.setInt(2, car.getOwner_id());
+            preparedStatement.setInt(2, car.getOwnerId());
 
             preparedStatement.execute();
 
@@ -64,6 +66,14 @@ public class CarsDaoImpl implements CarsDao {
     }
 
     public void delete(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_CAR);
+            preparedStatement.setInt(1, id);
 
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

@@ -13,7 +13,7 @@ public class Main {
 
         OwnersDao ownerDao = DaoSupportFactory.getInstance().getDaoOwners();
 
-        Owner owner = ownerDao.find(3);
+       /* Owner owner = ownerDao.find(3);
 
         System.out.println(owner);
 
@@ -23,6 +23,8 @@ public class Main {
 
         owner = ownerDao.find(3);
 
-        System.out.println(owner);
+        System.out.println(owner);*/
+
+        ownerDao.delete(3);
     }
 }

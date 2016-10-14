@@ -21,6 +21,10 @@ public class OwnersDaoImpl implements OwnersDao {
     // language=SQL
     private final String SQL_ADD_OWNER = "INSERT into owners (city, age, name) values(?, ?, ?);";
 
+
+    // language=SQL
+    private final String SQL_DELETE_OWNER = "DELETE FROM owners WHERE owner_id = ?";
+
     public OwnersDaoImpl(Connection connection) {
         this.connection = connection;
     }
@@ -74,6 +78,14 @@ public class OwnersDaoImpl implements OwnersDao {
     }
 
     public void delete(int id) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_OWNER);
+            preparedStatement.setInt(1, id);
 
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

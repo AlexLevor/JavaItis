@@ -14,11 +14,11 @@ public class Car {
         this.owner_id = owner_id;
     }
 
-    public int getCar_id() {
+    public int getId() {
         return car_id;
     }
 
-    public void setCar_id(int car_id) {
+    public void setId(int car_id) {
         this.car_id = car_id;
     }
 
@@ -30,11 +30,11 @@ public class Car {
         this.mileage = mileage;
     }
 
-    public int getOwner_id() {
+    public int getOwnerId() {
         return owner_id;
     }
 
-    public void setOwner_id(int owner_id) {
+    public void setOwnerId(int owner_id) {
         this.owner_id = owner_id;
     }
 }
