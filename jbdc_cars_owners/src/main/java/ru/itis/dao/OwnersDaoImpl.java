@@ -3,6 +3,7 @@ package ru.itis.dao;
 import ru.itis.models.Owner;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,9 @@ import java.util.List;
 public class OwnersDaoImpl implements OwnersDao {
 
     private Connection connection;
+
+    // language=SQL
+    private final String SQL_ALL_OWNERS = "SELECT * FROM owners";
 
     // language=SQL
     private final String SQL_FIND_OWNER = "SELECT * FROM owners WHERE owner_id = ?;";
@@ -30,7 +34,21 @@ public class OwnersDaoImpl implements OwnersDao {
     }
 
     public List<Owner> getAll() {
-        return null;
+
+        try {
+            List<Owner> owners = new ArrayList<Owner>();
+            Statement statement = connection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(SQL_ALL_OWNERS);
+            while (resultSet.next()) {
+                Owner owner = new Owner(resultSet.getInt("owner_id"), resultSet.getString("city"),
+                        resultSet.getInt("age"), resultSet.getString("name"));
+                owners.add(owner);
+            }
+            return owners;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     public Owner find(int id) {
