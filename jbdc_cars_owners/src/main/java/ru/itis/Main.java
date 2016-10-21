@@ -17,7 +17,7 @@ public class Main {
 
         System.out.println(owner);
 
-        Owner owner1 = new Owner(3, "BBBBB", 30, "AAAAAAAAAAAAA");
+        Owner owner1 = new Owner("BBBBB", 30, "AAAAAAAAAAAAA");
 
         ownerDao.update(owner1);
 

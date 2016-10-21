@@ -11,11 +11,9 @@ public class Owner {
     private int age;
     private String name;
 
-    public Owner(int owner_id,
-             String city,
+    public Owner(String city,
              int age,
              String name){
-        this.id = owner_id;
         this.city = city;
         this.age = age;
         this.name = name;

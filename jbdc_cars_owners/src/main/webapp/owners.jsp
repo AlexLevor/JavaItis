@@ -6,15 +6,26 @@
 </head>
 <body>
 <h1>
-    Список пользователей:
+    Список автовладельцев:
 </h1>
 <p>
-    <c:forEach items="${requestScope.CarUsers}" var="currentUser">
+    <c:forEach items="${requestScope.myOwners}" var="currentUser">
         <tr>
             <td><c:out value="${currentUser}" /><td>
             <br>
         </tr>
     </c:forEach>
 </p>
+<h2>
+    Форма для добавления нового владельца
+</h2>
+
+<form action="users" method="post">
+    City: <input type="text" name="city">
+    Age: <input type="text" name="age">
+    Name: <input type="text" name="name">
+    <input type="submit" value="Add">
+    <span class="error">${error}</span>
+</form>
 </body>
 </html>
