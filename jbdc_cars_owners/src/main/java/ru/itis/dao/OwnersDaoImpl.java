@@ -13,20 +13,14 @@ public class OwnersDaoImpl implements OwnersDao {
 
     private Connection connection;
 
-    // language=SQL
     private final String SQL_ALL_OWNERS = "SELECT * FROM owners";
 
-    // language=SQL
     private final String SQL_FIND_OWNER = "SELECT * FROM owners WHERE owner_id = ?;";
 
-    // language=SQL
     private final String SQL_UPDATE_OWNER = "UPDATE owners SET city = ? , age = ? , name = ? WHERE owner_id = ?";
 
-    // language=SQL
     private final String SQL_ADD_OWNER = "INSERT into owners (city, age, name) values(?, ?, ?);";
 
-
-    // language=SQL
     private final String SQL_DELETE_OWNER = "DELETE FROM owners WHERE owner_id = ?";
 
     public OwnersDaoImpl(Connection connection) {
@@ -41,7 +35,7 @@ public class OwnersDaoImpl implements OwnersDao {
 
             ResultSet resultSet = statement.executeQuery(SQL_ALL_OWNERS);
             while (resultSet.next()) {
-                Owner owner = new Owner(resultSet.getInt("owner_id"), resultSet.getString("city"),
+                Owner owner = new Owner(resultSet.getString("city"),
                         resultSet.getInt("age"), resultSet.getString("name"));
                 owners.add(owner);
             }
@@ -59,7 +53,7 @@ public class OwnersDaoImpl implements OwnersDao {
             ResultSet result = preparedStatement.executeQuery();
 
             result.next();
-            return new Owner(result.getInt("owner_id"), result.getString("city"), result.getInt("age"), result.getString("name"));
+            return new Owner(result.getString("city"), result.getInt("age"), result.getString("name"));
 
         } catch (SQLException e) {
             throw new IllegalStateException(e);

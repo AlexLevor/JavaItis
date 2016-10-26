@@ -6,26 +6,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by KFU-user on 12.10.2016.
- */
 public class CarsDaoImpl implements CarsDao {
 
     private Connection connection;
 
-    //language=SQL
     private final String SQL_ALL_CARS = "SELECT * FROM cars";
 
-    // language=SQL
     private final String SQL_FIND_CAR = "SELECT * FROM cars WHERE car_id = ?;";
 
-    // language=SQL
     private final String SQL_ADD_CAR = "INSERT into cars (mileage, owner_id) values(?, ?)";
 
-    // language=SQL
     private final String SQL_UPDATE_CAR = "UPDATE cars SET mileage = ? , owner_id = ? WHERE car_id = ?";
 
-    // language=SQL
     private final String SQL_DELETE_CAR = "DELETE FROM cars WHERE car_id = ?";
 
     public CarsDaoImpl(Connection connection){

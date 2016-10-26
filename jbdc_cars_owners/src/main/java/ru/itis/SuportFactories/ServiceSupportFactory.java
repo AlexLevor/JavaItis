@@ -2,8 +2,8 @@ package ru.itis.SuportFactories;
 
 import ru.itis.dao.CarsDao;
 import ru.itis.dao.OwnersDao;
-import ru.itis.services.CarsService;
 import ru.itis.services.OwnersService;
+import ru.itis.services.CarsService;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +16,7 @@ import java.util.Properties;
  * Created by AlexLevor on 21.10.2016.
  */
 public class ServiceSupportFactory {
+
     private static ServiceSupportFactory instance;
     private OwnersService ownersService;
     private CarsService carsService;
@@ -54,13 +55,16 @@ public class ServiceSupportFactory {
         }
     }
 
+    static {
+        instance = new ServiceSupportFactory();
+    }
     public OwnersService getServiceOwners(){
             return ownersService;
         }
-        public CarsService getServiceCars(){
+    public CarsService getServiceCars(){
             return carsService;
         }
-        public static ServiceSupportFactory getInstance(){
+    public static ServiceSupportFactory getInstance(){
             return instance;
         }
 }

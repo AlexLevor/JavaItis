@@ -5,9 +5,7 @@ import ru.itis.models.Car;
 
 import java.util.List;
 
-/**
- * Created by AlexLevor on 21.10.2016.
- */
+
 public class CarsServiceImpl implements CarsService {
 
     private CarsDao carsDao;

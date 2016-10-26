@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - Cars@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="2.6">
+    <database id="1" name="Cars">
+      <object-id>16393</object-id>
+      <visible>1</visible>
+    </database>
+    <database id="2" name="postgres">
+      <object-id>12401</object-id>
+    </database>
+    <schema id="3" parent="1" name="public">
+      <object-id>2200</object-id>
+      <visible>1</visible>
+      <introspection-state-number>545</introspection-state-number>
+      <introspection-timestamp>2016-10-26.00:51:12.941</introspection-timestamp>
+    </schema>
+    <schema id="4" parent="1" name="pg_catalog">
+      <object-id>11</object-id>
+    </schema>
+    <schema id="5" parent="1" name="pg_toast">
+      <object-id>99</object-id>
+    </schema>
+    <schema id="6" parent="1" name="pg_temp_1">
+      <object-id>11848</object-id>
+    </schema>
+    <schema id="7" parent="1" name="pg_toast_temp_1">
+      <object-id>11849</object-id>
+    </schema>
+    <schema id="8" parent="1" name="information_schema">
+      <object-id>12113</object-id>
+    </schema>
+    <sequence id="9" parent="3" name="cars_car_id_seq">
+      <object-id>16402</object-id>
+      <state-number>545</state-number>
+    </sequence>
+    <sequence id="10" parent="3" name="owners_owner_id_seq">
+      <object-id>16394</object-id>
+      <state-number>545</state-number>
+    </sequence>
+    <table id="11" parent="3" name="cars">
+      <object-id>16404</object-id>
+      <state-number>545</state-number>
+    </table>
+    <table id="12" parent="3" name="owners">
+      <object-id>16396</object-id>
+      <state-number>545</state-number>
+    </table>
+    <column id="13" parent="11" name="car_id">
+      <state-number>545</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;cars_car_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="14" parent="11" name="mileage">
+      <state-number>545</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="15" parent="11" name="owner_id">
+      <state-number>545</state-number>
+      <data-type>integer|0</data-type>
+    </column>
+    <index id="16" parent="11" name="cars_pkey">
+      <object-id>16408</object-id>
+      <columns>car_id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="17" parent="11" name="cars_pkey">
+      <object-id>16409</object-id>
+      <columns>car_id</columns>
+      <underlying-index>cars_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="18" parent="11" name="cars_owner_id_fkey">
+      <object-id>16410</object-id>
+      <columns>owner_id</columns>
+      <ref-key>~.owners.owners_pkey</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="19" parent="12" name="owner_id">
+      <state-number>545</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+      <default-expression>nextval(&apos;owners_owner_id_seq&apos;::regclass)</default-expression>
+    </column>
+    <column id="20" parent="12" name="city">
+      <state-number>545</state-number>
+      <mandatory>1</mandatory>
+      <data-type>varchar(15)|0</data-type>
+    </column>
+    <column id="21" parent="12" name="age">
+      <state-number>545</state-number>
+      <mandatory>1</mandatory>
+      <data-type>integer|0</data-type>
+    </column>
+    <column id="22" parent="12" name="name">
+      <state-number>545</state-number>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <index id="23" parent="12" name="owners_pkey">
+      <object-id>16400</object-id>
+      <columns>owner_id</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="24" parent="12" name="owners_pkey">
+      <object-id>16401</object-id>
+      <columns>owner_id</columns>
+      <underlying-index>owners_pkey</underlying-index>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

@@ -13,6 +13,7 @@ import java.util.Properties;
  */
 
 public class JdbcConnectionFactory {
+
     private static JdbcConnectionFactory instance;
     private Properties properties;
     private  Connection connection;

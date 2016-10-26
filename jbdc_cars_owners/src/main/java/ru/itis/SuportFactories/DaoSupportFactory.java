@@ -1,6 +1,5 @@
 package ru.itis.SuportFactories;
 
-import org.postgresql.core.ConnectionFactory;
 import ru.itis.dao.CarsDao;
 import ru.itis.dao.OwnersDao;
 
