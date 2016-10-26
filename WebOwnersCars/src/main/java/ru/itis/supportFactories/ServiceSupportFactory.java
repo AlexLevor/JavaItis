@@ -26,7 +26,11 @@ public class ServiceSupportFactory {
     private ServiceSupportFactory(){
         try{
             properties = new Properties();
-            properties.load(new FileInputStream(".\\src\\main\\resources\\ServicesProperties.properties"));
+            //для maina
+            //properties.load(new FileInputStream(".\\src\\main\\resources\\ServicesProperties.properties"));
+            //для tomcata через maven
+            properties.load(new FileInputStream("C:\\Users\\KFU-user\\apache-tomcat-8.5.6\\apache-tomcat-8.5.6\\webapps\\ROOT\\WEB-INF\\classes\\ServicesProperties.properties"));
+
             String serviceCarsClass=properties.getProperty("carsservice.class");
             String serviceOwnersClass=properties.getProperty("ownersservice.class");
 

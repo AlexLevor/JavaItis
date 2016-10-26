@@ -21,7 +21,11 @@ public class JDBCConnectionFactory {
     private JDBCConnectionFactory(){
         try {
             this.properties = new Properties();
-            this.properties.load(new FileInputStream(".\\src\\main\\resources\\JdbcProperties.properties"));
+
+            //для maina
+            //properties.load(new FileInputStream(".\\src\\main\\resources\\JdbcProperties.properties"));
+            //для tomcata через maven
+            this.properties.load(new FileInputStream("C:\\Users\\KFU-user\\apache-tomcat-8.5.6\\apache-tomcat-8.5.6\\webapps\\ROOT\\WEB-INF\\classes\\JdbcProperties.properties"));
             String URL = this.properties.getProperty("jdbc.url");
             String name = this.properties.getProperty("jdbc.username");
             String password = this.properties.getProperty("jdbc.password");

@@ -21,6 +21,7 @@
             <td><c:out value="${currentUser.city}" /><td>
             <td><c:out value="${currentUser.age}" /><td>
             <td><c:out value="${currentUser.name}" /><td>
+            <br>
         </tr>
     </c:forEach>
 </p>

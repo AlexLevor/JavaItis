@@ -25,7 +25,11 @@ public class DaoSupportFactory {
     private DaoSupportFactory (){
         try{
             properties = new Properties();
-            properties.load(new FileInputStream(".\\src\\main\\resources\\DaoProperties.properties"));
+            //для maina
+            //properties.load(new FileInputStream(".\\src\\main\\resources\\DaoProperties.properties"));
+            // для tomcata через maven
+            properties.load(new FileInputStream("C:\\Users\\KFU-user\\apache-tomcat-8.5.6\\apache-tomcat-8.5.6\\webapps\\ROOT\\WEB-INF\\classes\\DaoProperties.properties"));
+
             String daoCarsClass=properties.getProperty("carsdao.class");
             String daoUsersClass=properties.getProperty("ownersdao.class");
 
