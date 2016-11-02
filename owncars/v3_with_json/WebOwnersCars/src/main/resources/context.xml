@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/Cars"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="Postgresb@t1m"/>
+    </bean>
+
+    <bean id="carsDao" class="ru.itis.dao.CarsDaoImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="ownersDao" class="ru.itis.dao.OwnersDaoImpl">
+        <constructor-arg ref="dataSource"/>
+    </bean>
+
+    <bean id="carService" class="ru.itis.services.CarServiceImpl">
+        <constructor-arg ref="carsDao"/>
+    </bean>
+
+    <bean id="ownerService" class="ru.itis.services.OwnerServiceImpl">
+        <constructor-arg ref="ownersDao"/>
+    </bean>
+
+</beans>

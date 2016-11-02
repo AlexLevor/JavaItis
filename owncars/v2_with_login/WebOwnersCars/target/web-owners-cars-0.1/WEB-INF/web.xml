@@ -9,7 +9,6 @@
         <servlet-name>OwnersServlet</servlet-name>
         <servlet-class>ru.itis.servlets.OwnersServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>OwnersServlet</servlet-name>
         <url-pattern>/owners</url-pattern>

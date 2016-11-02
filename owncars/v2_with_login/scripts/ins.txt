@@ -1,7 +1,13 @@
-INSERT INTO public.cars(
-	car_id, mileage, owner_id)
-	VALUES (?, ?, ?);
 
-INSERT INTO public.owners(
-	owner_id, city, age, name, login, password, token)
-	VALUES (?, ?, ?, ?, ?, ?, ?);
+
+insert into owners (city, age, name, login, password) values('Kazan', 24, 'Vasya', 'vas24', '123');
+insert into owners (city, age, name, login, password) values('Kazan', 23, 'Kate', 'kate', '123');
+insert into owners (city, age, name, login, password) values('Moscow', 20, 'Boris', 'bor20', '123');
+
+
+
+
+insert into cars (mileage, owner_id) values (10000, 1);
+insert into cars (mileage, owner_id) values (10, 2);
+insert into cars (mileage, owner_id) values (4400, 3);
+insert into cars (mileage, owner_id) values (300, 1);

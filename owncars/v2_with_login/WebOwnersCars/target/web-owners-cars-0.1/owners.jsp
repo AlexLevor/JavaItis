@@ -21,7 +21,9 @@
             <td><c:out value="${currentUser.city}" /><td>
             <td><c:out value="${currentUser.age}" /><td>
             <td><c:out value="${currentUser.name}" /><td>
-            <br>
+            <td><c:out value="${currentUser.login}" /><td>
+            <td><c:out value="${currentUser.password}" /><td>
+        <br>
         </tr>
     </c:forEach>
 </p>
@@ -33,6 +35,8 @@
     City: <input type="text" name="city">
     Age: <input type="text" name="age">
     Name: <input type="text" name="name">
+    Login: <input type="text" name="login">
+    Password: <input type="text" name="password">
     <input type="submit" value="Add">
     <span class="error">${error}</span>
 </form>

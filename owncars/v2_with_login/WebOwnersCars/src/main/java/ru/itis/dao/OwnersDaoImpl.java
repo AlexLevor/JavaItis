@@ -22,7 +22,7 @@ public class OwnersDaoImpl implements OwnersDao {
 
     private final String SQL_UPDATE_OWNER = "UPDATE owners SET city = ? , age = ? , name = ? WHERE owner_id = ?";
 
-    private final String SQL_ADD_OWNER = "INSERT into owners (city, age, name, login) values(?, ?, ?, ?, ?);";
+    private final String SQL_ADD_OWNER = "INSERT into owners (city, age, name, login, password) values(?, ?, ?, ?, ?);";
 
     private final String SQL_DELETE_OWNER = "DELETE FROM owners WHERE owner_id = ?";
 
