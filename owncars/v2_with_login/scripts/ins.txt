@@ -1,0 +1,7 @@
+INSERT INTO public.cars(
+	car_id, mileage, owner_id)
+	VALUES (?, ?, ?);
+
+INSERT INTO public.owners(
+	owner_id, city, age, name, login, password, token)
+	VALUES (?, ?, ?, ?, ?, ?, ?);

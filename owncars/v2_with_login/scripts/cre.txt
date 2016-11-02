@@ -1,0 +1,57 @@
+-- Table: public.cars
+
+-- DROP TABLE public.cars;
+
+CREATE TABLE public.cars
+(
+    car_id integer NOT NULL DEFAULT nextval('cars_car_id_seq'::regclass),
+    mileage integer,
+    owner_id integer,
+    CONSTRAINT cars_pkey PRIMARY KEY (car_id),
+    CONSTRAINT cars_owner_id_fkey FOREIGN KEY (owner_id)
+        REFERENCES public.owners (owner_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.cars
+    OWNER to postgres;
+
+
+
+
+-- Table: public.owners
+
+-- DROP TABLE public.owners;
+
+CREATE TABLE public.owners
+(
+    owner_id integer NOT NULL DEFAULT nextval('owners_owner_id_seq'::regclass),
+    city character varying(15) COLLATE pg_catalog."default" NOT NULL,
+    age integer NOT NULL,
+    name character varying(20) COLLATE pg_catalog."default",
+    login character varying(20) COLLATE pg_catalog."default",
+    password character varying(20) COLLATE pg_catalog."default",
+    token character varying(10) COLLATE pg_catalog."default",
+    CONSTRAINT owners_pkey PRIMARY KEY (owner_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.owners
+    OWNER to postgres;
+
+-- Index: owners_login_uindex
+
+-- DROP INDEX public.owners_login_uindex;
+
+CREATE UNIQUE INDEX owners_login_uindex
+    ON public.owners USING btree
+    (login COLLATE pg_catalog."default")
+    TABLESPACE pg_default;

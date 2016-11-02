@@ -10,11 +10,18 @@ import java.util.List;
 public interface OwnersDao {
     List<Owner> getAll();
 
-    Owner find(int id);
+    Owner findId(int id);
+
+    Owner findLogin(String login);
 
     void add(Owner owner);
 
     void update(Owner owner);
 
     void delete(int id);
+
+    void setToken(String login, String password, String token);
+
+    String getToken(String login);
+
 }

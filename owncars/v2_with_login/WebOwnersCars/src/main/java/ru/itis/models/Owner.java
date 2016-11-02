@@ -11,15 +11,43 @@ public class Owner {
     private String city;
     private int age;
     private String name;
+    private String login;
+    private String password;
 
+    public Owner(String city,
+                 int age,
+                 String name,
+                 String login,
+                 String password){
+
+        this.city = city;
+        this.age = age;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+    }
+    public Owner(String city,
+                 int age,
+                 String name,
+                 String login) {
+        this.city = city;
+        this.age = age;
+        this.name = name;
+        this.login = login;
+    }
     public Owner(int id,
                  String city,
                  int age,
-                 String name){
+                 String name,
+                 String login,
+                 String password){
         this.id = id;
         this.city = city;
         this.age = age;
         this.name = name;
+        this.login = login;
+        this.password = password;
+
     }
     public Owner(String city,
                  int age,
@@ -52,6 +80,23 @@ public class Owner {
                 .add("city", this.city)
                 .add("age", this.age)
                 .add("name", this.name)
+                .add("login", this.login)
                 .toString();
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

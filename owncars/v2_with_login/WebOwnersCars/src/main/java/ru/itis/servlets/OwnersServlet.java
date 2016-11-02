@@ -60,7 +60,9 @@ public class OwnersServlet extends HttpServlet {
         String city = request.getParameter("city");
         int age = Integer.parseInt(request.getParameter("age"));
         String name = request.getParameter("name");
-        Owner owner = new Owner (city, age, name);
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        Owner owner = new Owner (city, age, name, login, password);
         ownerService.addOwner(owner);
 
         if (owner != null) {

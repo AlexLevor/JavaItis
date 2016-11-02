@@ -19,8 +19,12 @@ public class OwnerServiceImpl implements OwnerService {
         return this.ownersDao.getAll();
     }
 
-    public Owner findOwner(int id) {
-        return ownersDao.find(id);
+    public Owner findOwnerID(int id) {
+        return ownersDao.findId(id);
+    }
+
+    public Owner findOwnerLogin(String login) {
+        return ownersDao.findLogin(login);
     }
 
     public void updateOwner(Owner owner) {
@@ -33,5 +37,14 @@ public class OwnerServiceImpl implements OwnerService {
 
     public void deleteOwner(int id) {
         ownersDao.delete(id);
+    }
+
+    public void setToken(String login, String password) {
+       RandomString randomString = new RandomString(10);
+       ownersDao.setToken(login, password, randomString.nextString());
+    }
+
+    public String getToken(String login) {
+        return ownersDao.getToken(login);
     }
 }

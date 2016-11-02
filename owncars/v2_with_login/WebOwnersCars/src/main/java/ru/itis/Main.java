@@ -1,8 +1,11 @@
 package ru.itis;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.itis.dao.OwnersDao;
 import ru.itis.models.Owner;
 import ru.itis.services.OwnerService;
+import ru.itis.services.RandomString;
 
 import java.io.*;
 import java.util.List;
@@ -16,7 +19,7 @@ public class Main {
 
         //  OwnerService ownerDao = ServiceSupportFactory.getInstance().getServiceOwners();
 
-        //  Owner owner = ownerDao.find(3);
+        //  Owner owner = ownerDao.findId(3);
 
         //  System.out.println(owner);
 
@@ -27,11 +30,17 @@ public class Main {
             System.out.println(i.toString());
         }*/
 
-        //  Owner owner = ownerDao.find(3);
+        //  Owner owner = ownerDao.findId(3);
 
         //  System.out.println(owner);
 
         // ownerDao.delete(3);
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
+        OwnerService ownerService = (OwnerService) applicationContext.getBean("ownerService");
+        System.out.println(ownerService.getToken("mit"));
+        ownerService.setToken("ann","123");
+        System.out.println(ownerService.findOwnerLogin("ann") + ownerService.getToken("ann"));
+
     }
 
 }

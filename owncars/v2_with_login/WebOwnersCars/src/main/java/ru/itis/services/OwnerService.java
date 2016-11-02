@@ -9,8 +9,11 @@ import java.util.List;
  */
 public interface OwnerService {
     List<Owner> getAllOwner();
-    Owner findOwner(int id);
+    Owner findOwnerID(int id);
+    Owner findOwnerLogin(String login);
     void updateOwner(Owner car);
     void addOwner(Owner car);
     void deleteOwner(int id);
+    void setToken(String login, String password);
+    String getToken(String login);
 }
