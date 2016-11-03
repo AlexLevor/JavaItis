@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - Cars@localhost" uuid="f882e00e-0f07-4e65-8561-7ba4f2e5f914">
-      <database-info product="PostgreSQL" version="9.6.0" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+    <data-source name="PostgreSQL - Cars@localhost" uuid="2422bb93-441e-477f-9466-8482b65f1a6e">
+      <database-info product="PostgreSQL" version="9.6.1" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>postgres</user-name>
-      <introspection-scope>Cars:pg_catalog,postgres,public</introspection-scope>
-      <resolve-scope>Cars:postgres,public</resolve-scope>
+      <resolve-scope>Cars:public,postgres</resolve-scope>
     </data-source>
   </component>
 </project>

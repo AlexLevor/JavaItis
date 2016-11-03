@@ -16,7 +16,9 @@ public class CarsDaoImpl implements CarsDao {
 
     private final String SQL_ALL_CARS = "SELECT * FROM cars";
 
-    private final String SQL_FIND_CAR = "SELECT * FROM cars WHERE car_id = ?;";
+    private final String SQL_ALL_CARS_OF_ONE = "SELECT * FROM cars WHERE owner_id = ?";
+
+    private final String SQL_FIND_CAR = "SELECT * FROM cars WHERE car_id = ?";
 
     private final String SQL_ADD_CAR = "INSERT into cars (mileage, owner_id) values(?, ?)";
 
@@ -32,6 +34,22 @@ public class CarsDaoImpl implements CarsDao {
         }
     }
 
+    public List<Car> getAllCarsOfOne(int id) {
+        try {
+            List<Car> cars = new ArrayList<Car>();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_ALL_CARS_OF_ONE);
+            preparedStatement.setInt(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Car car = new Car(resultSet.getInt("car_id"), resultSet.getInt("mileage"),resultSet.getInt("owner_id"));
+                cars.add(car);
+            }
+            return cars;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
     public List<Car> getAll() {
         try {
             List<Car> cars = new ArrayList<Car>();

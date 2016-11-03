@@ -2,6 +2,7 @@ package ru.itis;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.itis.services.CarService;
 import ru.itis.services.OwnerService;
 
 /**
@@ -33,7 +34,8 @@ public class Main {
         OwnerService ownerService = (OwnerService) applicationContext.getBean("ownerService");
         ownerService.setToken("kate","123");
         System.out.println(ownerService.findOwnerLogin("kate") + ownerService.getToken("kate"));
-
+        CarService carService = (CarService) applicationContext.getBean("carService");
+        System.out.println(carService.getAllCarsOfOne(4));
     }
 
 }

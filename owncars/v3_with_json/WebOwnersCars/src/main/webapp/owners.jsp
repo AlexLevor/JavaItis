@@ -23,7 +23,7 @@
             <td><c:out value="${currentUser.name}" /><td>
             <td><c:out value="${currentUser.login}" /><td>
             <td><c:out value="${currentUser.password}" /><td>
-        <br>
+            <br>
         </tr>
     </c:forEach>
 </p>

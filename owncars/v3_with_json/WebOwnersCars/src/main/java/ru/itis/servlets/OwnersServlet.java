@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.itis.models.Car;
 import ru.itis.models.Owner;
+import ru.itis.services.CarService;
 import ru.itis.services.OwnerService;
 
 import javax.servlet.ServletException;
@@ -24,7 +26,9 @@ import java.util.regex.Pattern;
 public class OwnersServlet extends HttpServlet {
 
     private OwnerService ownerService;
+    private CarService carService;
     private ObjectMapper objectMapper;
+
     private static Logger log = Logger.getLogger(OwnersServlet.class.getName());
 
     @Override
@@ -35,57 +39,75 @@ public class OwnersServlet extends HttpServlet {
             e.printStackTrace();
         }
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("context.xml");
-        ownerService = (OwnerService) applicationContext.getBean("ownerService");
-
+        this.ownerService = (OwnerService) applicationContext.getBean("ownerService");
+        this.carService = (CarService) applicationContext.getBean("carService");
     }
+
     private class RestRequest {
         private Pattern regExAllPattern = Pattern.compile("/owners");
-        private Pattern regExIdPattern = Pattern.compile("/owners/([0-9]*)");
+        private Pattern regExOwnerLoginPattern = Pattern.compile("/owners?id=([0-9]+)");
+        private Pattern regExAllCarsPattern = Pattern.compile("/owners/([0-9]+)/cars");
 
-        private Integer id;
         private List<Owner> ownerList;
+        private Owner owner;
+        private List<Car> carList;
+
+
 
         public RestRequest(String pathInfo) throws ServletException {
             Matcher matcher;
 
-            // Check for ID case first, since the All pattern would also match
-            matcher = regExIdPattern.matcher(pathInfo);
+            matcher = regExAllPattern.matcher(pathInfo);
             if (matcher.find()) {
-                ownerList=ownerService.getAllOwner();
+                this.ownerList=ownerService.getAllOwner();
+                return;
+            }
+            matcher = regExOwnerLoginPattern.matcher(pathInfo);
+            if (matcher.find()) {
+                this.owner=ownerService.findOwnerID(Integer.parseInt(matcher.group(1)));
+                return;
+            }
+            matcher = regExAllCarsPattern.matcher(pathInfo);
+            if (matcher.find()) {
+                this.carList = carService.getAllCarsOfOne(Integer.parseInt(matcher.group(1)));
                 return;
             }
 
-            matcher = regExAllPattern.matcher(pathInfo);
-            if (matcher.find()) return;
 
             throw new ServletException("Invalid URI");
         }
 
-        public List<Owner> getOwner() {
+        public List<Owner> getAllOwner() {
             return ownerList;
         }
+        public Owner getOwner() {
+            return owner;
+        }
 
+        public List<Car> getCars() {
+            return carList;
+        }
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        PrintWriter out;
+        response.setContentType("application/json");
 
+        out = response.getWriter();
         out.println("GET request handling");
         out.println(request.getPathInfo());
         out.println(request.getParameterMap());
-        try {
-            RestRequest resourceValues = new RestRequest(request.getPathInfo());
-            out.println(resourceValues.getId());
-        } catch (ServletException e) {
-            response.setStatus(400);
-            response.resetBuffer();
-            e.printStackTrace();
-            out.println(e.toString());
-        }
-        out.close();
+        RestRequest restRequest = new RestRequest(request.getPathInfo());
+
+        out.println(restRequest.getAllOwner());
+
+
     }
+
+
+
+    /*
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -101,7 +123,7 @@ public class OwnersServlet extends HttpServlet {
         }
 
 
-    }
+    }*/
 /*
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

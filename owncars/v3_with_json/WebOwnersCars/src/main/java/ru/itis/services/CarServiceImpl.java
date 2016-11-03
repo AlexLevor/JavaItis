@@ -15,6 +15,9 @@ public class CarServiceImpl implements CarService {
         this.carsDao = carsDao;
     }
 
+    public List<Car> getAllCarsOfOne(int id) {
+        return this.carsDao.getAllCarsOfOne(id);    }
+
     public List<Car> getAllCars() {
         return this.carsDao.getAll();
     }

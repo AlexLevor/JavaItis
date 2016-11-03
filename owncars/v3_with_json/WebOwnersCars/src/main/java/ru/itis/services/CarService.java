@@ -8,6 +8,7 @@ import java.util.List;
  * Created by AlexLevor on 26.10.2016.
  */
 public interface CarService {
+    List<Car> getAllCarsOfOne(int id);
     List<Car> getAllCars();
     Car findCar(int id);
     void updateCar(Car car);
