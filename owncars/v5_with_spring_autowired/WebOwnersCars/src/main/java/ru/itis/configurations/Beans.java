@@ -10,10 +10,8 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 
 @Configuration
@@ -21,26 +19,25 @@ import java.sql.SQLException;
 @ComponentScan("ru.itis")
 public class Beans extends WebMvcConfigurerAdapter{
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Bean
     public ViewResolver configureViewResolver() {
         InternalResourceViewResolver viewResolve = new InternalResourceViewResolver();
-        viewResolve.setPrefix("/jsp/");
+        viewResolve.setPrefix("WEB-INF/views/");
         viewResolve.setSuffix(".jsp");
 
         return viewResolve;
     }
 
     @Bean
-    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+    public static DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/Cars");
         dataSource.setUsername("postgres");
         dataSource.setPassword("Postgresb@t1m");
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-        return namedParameterJdbcTemplate;
+
+        return dataSource;
     }
 
     @Override

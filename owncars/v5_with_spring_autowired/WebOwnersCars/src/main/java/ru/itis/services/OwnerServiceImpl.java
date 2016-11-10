@@ -13,9 +13,10 @@ import java.util.List;
  */
 @Service
 public class OwnerServiceImpl implements OwnerService {
-    private OwnersDao ownersDao;
 
     @Autowired
+    private OwnersDao ownersDao;
+
     public OwnerServiceImpl(OwnersDao ownersDao){
         this.ownersDao = ownersDao;
     }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import ru.itis.configurations.Beans;
 import ru.itis.models.Car;
 
+
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ public class CarsDaoImpl implements CarsDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public CarsDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public CarsDaoImpl(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public List<Car> getAllCarsOfOne(int id) {

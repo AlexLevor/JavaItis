@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * Created by AlexLevor on 26.10.2016.
  */
@@ -47,8 +48,8 @@ public class OwnersDaoImpl implements OwnersDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public OwnersDaoImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    public OwnersDaoImpl(DataSource dataSource) {
+        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public List<Owner> getAll() {
@@ -68,7 +69,7 @@ public class OwnersDaoImpl implements OwnersDao {
 
         return this.namedParameterJdbcTemplate.queryForObject(SQL_FIND_OWNER_ID, param,  new RowMapper<Owner>() {
             public Owner mapRow(ResultSet resultSet, int i) throws SQLException {
-                return new Owner(resultSet.getInt("owner_id"),resultSet.getString("city"),resultSet.getInt("age"),resultSet.getString("name"), resultSet.getString("login"));
+                return new Owner(resultSet.getInt("owner_id"),resultSet.getString("city"),resultSet.getInt("age"),resultSet.getString("name"), resultSet.getString("login"),resultSet.getString("password"));
             }
         });
     }

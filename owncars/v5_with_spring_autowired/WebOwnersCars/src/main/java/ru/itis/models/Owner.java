@@ -24,12 +24,24 @@ public class Owner {
         this.name = name;
 
     }
-    public Owner(int id,
-                 String city,
+    public Owner(String city,
                  int age,
                  String name,
                  String login,
                  String password){
+        this.city = city;
+        this.age = age;
+        this.name = name;
+        this.login = login;
+        this.password = password;
+    }
+    public Owner(
+            int id,
+            String city,
+            int age,
+            String name,
+            String login,
+            String password) {
         this.id = id;
         this.city = city;
         this.age = age;
@@ -46,14 +58,6 @@ public class Owner {
         this.name = name;
     }
 
-
-    public Owner(int id, String city, int age, String name, String login) {
-        this.id = id;
-        this.city = city;
-        this.age = age;
-        this.name = name;
-        this.login = login;
-    }
 
     public int getId() {
         return id;
